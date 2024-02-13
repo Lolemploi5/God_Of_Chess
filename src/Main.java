@@ -2,13 +2,13 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        /** Fonction principale qui permet de lancer le jeu **/
+        /* Fonction principale qui permet de lancer le jeu **/
         System.out.println("Hello and welcome!");
-        /** Declaration des variables **/
+        /* Declaration des variables **/
         String j1, j2;
-        /** Declaration des variables pour la grille **/
+        /* Declaration des variables pour la grille **/
         int longueur,Largeur;
-        /** Declaration des variables pour les pions **/
+        /* Declaration des variables pour les pions **/
         Scanner myObj = new Scanner(System.in);  //Créer un scan de l'objet
 
         System.out.println("le pseudo du joueur 1 ?");
@@ -18,15 +18,17 @@ public class Main {
         j2 = myObj.nextLine();    //Lecture du pseudo du joueur 2
 
         MenuCommencement(); //Invocation d'une function pour commencer le jeu
+        
+
     }
     public static void RegleMenu(){
-        /** Fonction qui affiche les regles du jeu et propose de retourner au menu principal ou de reprendre la partie **/
+        /* Fonction qui affiche les regles du jeu et propose de retourner au menu principal ou de reprendre la partie **/
         Scanner scanner = new Scanner(System.in);
             //Tout les choix disponibles
             System.out.println("Sélectionnez une action :");
             System.out.println("1. Retour au menu principal !");
             System.out.println("2. Reprendre la partie !");
-            /** Lecture du choix **/
+            /* Lecture du choix **/
             int choix = scanner.nextInt();
 
             switch (choix) {
