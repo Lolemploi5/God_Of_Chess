@@ -3,19 +3,17 @@ public class Main {
 
     public static void main(String[] args) {
         /* Fonction principale qui permet de lancer le jeu **/
-        System.out.println("Hello and welcome!");
-        /* Declaration des variables **/
-        String j1, j2;
+        //Petit art ascii pour le fun
+        System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "\n" +
+                " .---.  .----. .----.     .----. .----.    .---. .-. .-..----. .----. .----.\n" +
+                "/   __}/  {}  \\| {}  \\   /  {}  \\| {_     /  ___}| {_} || {_  { {__  { {__  \n" +
+                "\\  {_ }\\      /|     /   \\      /| |      \\     }| { } || {__ .-._} }.-._} }\n" +
+                " `---'  `----' `----'     `----' `-'       `---' `-' `-'`----'`----' `----' \n" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "Bienvenue dans le jeu de la destruction !" + ConsoleColors.RESET);
         /* Declaration des variables pour la grille **/
         int longueur,Largeur;
         /* Declaration des variables pour les pions **/
-        Scanner myObj = new Scanner(System.in);  //Créer un scan de l'objet
 
-        System.out.println(ConsoleColors.WHITE_BRIGHT + "Entrez le pseudo du joueur 1 ?" + ConsoleColors.RESET);
-        j1 = myObj.nextLine();  //Lecture du pseudo du joueur 1
-
-        System.out.println("Entrez le pseudo du joueur 2 ?");
-        j2 = myObj.nextLine();    //Lecture du pseudo du joueur 2
 
         MenuCommencement(); //Invocation d'une function pour commencer le jeu
 
@@ -59,19 +57,32 @@ public class Main {
 
             switch (choix) {
                 case 1: //Choix 1 affiche les regles et invoque la function regle menu
-                    System.out.println(ConsoleColors.YELLOW_BOLD + "Les Règles du jeu :" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT + "Les Règles du jeu :" + ConsoleColors.RESET);
 
                     System.out.println(ConsoleColors.WHITE_BRIGHT + "Pendant son tour un joueur peut déplacer son pion d’une case " + ConsoleColors.RESET);
                     System.out.println(ConsoleColors.WHITE_BRIGHT + "(verticalement ou horizontalement), puis il détruit une case du plateau." + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.WHITE_BRIGHT + "Le dernier joueur pouvant encore se déplacer gagne." + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.YELLOW_BOLD + "Contraintes :" + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.WHITE_BRIGHT + "Un joueur ne peut pas détruire une case occupée" + ConsoleColors.RESET);
-
+                    System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "Le dernier joueur pouvant encore se déplacer" + ConsoleColors.GREEN_BOLD_BRIGHT + " gagne" + ConsoleColors.WHITE_BOLD_BRIGHT + "!" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT + "Contraintes :" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.WHITE_BRIGHT + "- Un joueur ne peut pas détruire une case occupée." + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.WHITE_BRIGHT + "- Un joueur ne peut pas occuper une case détruite ou une case deja occupée." + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "- Un joueur bloqué pendant un tour est déclaré " + ConsoleColors.RED_BOLD_BRIGHT+ "perdant" + ConsoleColors.WHITE_BOLD_BRIGHT + "!" + ConsoleColors.RESET);
                     RegleMenu();
 
                     break;
                 case 2: // choix 2 créer une nouvelle partie
-                    System.out.println(ConsoleColors.GREEN_BRIGHT + "Nouvelle partie ..." + ConsoleColors.RESET);
+
+                    /* Declaration des variables **/
+                    String j1, j2;
+                    System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "Nouvelle partie ..." + ConsoleColors.RESET);
+                    Scanner myObj = new Scanner(System.in);  //Créer un scan de l'objet
+
+                    System.out.println(ConsoleColors.WHITE_BRIGHT + "Entrez le pseudo du joueur 1 ?" + ConsoleColors.RESET);
+                    j1 = myObj.nextLine();  //Lecture du pseudo du joueur 1
+
+                    System.out.println(ConsoleColors.WHITE_BRIGHT + "Entrez le pseudo du joueur 2 ?" + ConsoleColors.RESET);
+                    j2 = myObj.nextLine();    //Lecture du pseudo du joueur 2
+
+                    System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "La partie commence !" + ConsoleColors.RESET);
                     Plateau monPlateau = new Plateau(10,11);
                     break;
                 case 3: //Choix 3 charge une partie déjà sauvegarder
