@@ -62,15 +62,15 @@ public class Main {
                     System.out.println("(verticalement ou horizontalement), puis il détruit une case du plateau.");
                     System.out.println("Le dernier joueur pouvant encore se déplacer gagne.");
                     RegleMenu();
-                    // Ajoutez ici le code correspondant à l'Action 1
+
                     break;
                 case 2: // choix 2 créer une nouvelle partie
                     System.out.println("Nouvelle partie ...");
-                    // Ajoutez ici le code correspondant à l'Action 2
+                    Plateau monPlateau = new Plateau(10,11);
                     break;
                 case 3: //Choix 3 charge une partie déjà sauvegarder
                     System.out.println("Chargement d'une sauvegarde");
-                    //Ajoutez ici le code correspondant à l'Action 2
+
                     break;
                 case 4: //Choix 4 quitte le jeu
                     System.out.println("Au revoir !");
