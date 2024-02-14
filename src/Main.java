@@ -14,7 +14,7 @@ public class Main {
         int longueur,Largeur;
         /* Declaration des variables pour les pions **/
 
-        MenuCommencement(); //Invocation d'une function pour commencer le jeu
+        MenuCommencement(); //Invocation d'une fonction pour commencer le jeu
     }
 
     public static void MenuCommencement(){
@@ -67,6 +67,7 @@ public class Main {
                     Plateau monPlateau = new Plateau(10,11);
                     monPlateau.afficherPlateau();
                     break;
+
                 case 3: //Choix 3 charge une partie déjà sauvegarder
                     System.out.println();
                     System.out.println(ConsoleColors.BLUE_BOLD + "Chargement d'une sauvegarde" + ConsoleColors.RESET);
@@ -76,6 +77,7 @@ public class Main {
                     System.out.println(ConsoleColors.RED_BOLD + "Au revoir !" + ConsoleColors.RESET);
                     scanner.close();
                     System.exit(0);
+
                 default: //Choix par defaut si vous mettez quelque chose de pas valide
                     System.out.println(ConsoleColors.RED_BRIGHT + "Choix non valide. Veuillez sélectionner une action valide." + ConsoleColors.RESET);
             }
