@@ -131,8 +131,6 @@ public class Plateau {
             joueurCourant.setX(newX);
             joueurCourant.setY(newY);
 
-            // Détruire la case après le déplacement
-            casesDestructibles[newX][newY] = false;
             deplacementPossible = true;
 
         } else {
