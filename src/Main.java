@@ -14,49 +14,27 @@ public class Main {
         int longueur,Largeur;
         /* Declaration des variables pour les pions **/
 
-
         MenuCommencement(); //Invocation d'une function pour commencer le jeu
-
-
     }
-    public static void RegleMenu(){
-        /* Fonction qui affiche les regles du jeu et propose de retourner au menu principal ou de reprendre la partie **/
-        Scanner scanner = new Scanner(System.in);
-            //Tout les choix disponibles
-            System.out.println(" ");
-            System.out.println(ConsoleColors.WHITE_BOLD + "Faites votre choix :" + ConsoleColors.RESET);
-            System.out.println(ConsoleColors.RED_BOLD + "1. Retour au menu principal !" + ConsoleColors.RESET);
-            System.out.println(ConsoleColors.GREEN_BOLD + "2. Reprendre la partie !" + ConsoleColors.RESET);
-            /* Lecture du choix **/
-            int choix = scanner.nextInt();
 
-            switch (choix) {
-                case 1: //Choix 1 on retourne au menu de base
-                    MenuCommencement();
-                    break;
-                case 2: //Choix 2 on retourne a notre games si on est en games et sinon ça nous retourne au menu si on est au menu
-                    System.out.println("Au revoir !");
-                    scanner.close();
-                    System.exit(0);
-                default: //Choix par defaut si on choisie quelque chose de non valide
-                    System.out.println(ConsoleColors.RED_BRIGHT + "Choix non valide. Veuillez sélectionner une action valide." + ConsoleColors.RESET);
-            }
-
-    }
     public static void MenuCommencement(){
         Scanner scanner = new Scanner(System.in);
 
             //Affichage de tous les choix possible
+            System.out.println();
             System.out.println(ConsoleColors.WHITE_BRIGHT + "Faites votre choix :" + ConsoleColors.RESET);
             System.out.println(ConsoleColors.YELLOW_BOLD + "1. Règles du jeu !" + ConsoleColors.RESET);
             System.out.println(ConsoleColors.GREEN_BOLD + "2. Nouvelle Partie !" + ConsoleColors.RESET);
             System.out.println(ConsoleColors.BLUE_BOLD + "3. Charger une sauvegarde !" + ConsoleColors.RESET);
             System.out.println(ConsoleColors.RED_BOLD + "4. Quitter" + ConsoleColors.RESET);
+            System.out.printf(ConsoleColors.WHITE_BRIGHT + "Entrez le numéro de votre choix : " + ConsoleColors.RESET);
+
 
             int choix = scanner.nextInt(); //Lecture de notre choix
 
             switch (choix) {
                 case 1: //Choix 1 affiche les regles et invoque la function regle menu
+                    System.out.println();
                     System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT + "Les Règles du jeu :" + ConsoleColors.RESET);
 
                     System.out.println(ConsoleColors.WHITE_BRIGHT + "Pendant son tour un joueur peut déplacer son pion d’une case " + ConsoleColors.RESET);
@@ -65,14 +43,16 @@ public class Main {
                     System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT + "Contraintes :" + ConsoleColors.RESET);
                     System.out.println(ConsoleColors.WHITE_BRIGHT + "- Un joueur ne peut pas détruire une case occupée." + ConsoleColors.RESET);
                     System.out.println(ConsoleColors.WHITE_BRIGHT + "- Un joueur ne peut pas occuper une case détruite ou une case deja occupée." + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "- Un joueur bloqué pendant un tour est déclaré " + ConsoleColors.RED_BOLD_BRIGHT+ "perdant" + ConsoleColors.WHITE_BOLD_BRIGHT + "!" + ConsoleColors.RESET);
-                    RegleMenu();
+                    System.out.printf(ConsoleColors.WHITE_BOLD_BRIGHT + "- Un joueur bloqué pendant un tour est déclaré " + ConsoleColors.RED_BOLD_BRIGHT+ "perdant" + ConsoleColors.WHITE_BOLD_BRIGHT + "!" + ConsoleColors.RESET);
+                    System.out.println();
+                    MenuCommencement();
 
                     break;
                 case 2: // choix 2 créer une nouvelle partie
 
                     /* Declaration des variables **/
                     String j1, j2;
+                    System.out.println();
                     System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "Nouvelle partie ..." + ConsoleColors.RESET);
                     Scanner myObj = new Scanner(System.in);  //Créer un scan de l'objet
 
@@ -82,10 +62,12 @@ public class Main {
                     System.out.println(ConsoleColors.WHITE_BRIGHT + "Entrez le pseudo du joueur 2 ?" + ConsoleColors.RESET);
                     j2 = myObj.nextLine();    //Lecture du pseudo du joueur 2
 
+                    System.out.println();
                     System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "La partie commence !" + ConsoleColors.RESET);
                     Plateau monPlateau = new Plateau(10,11);
                     break;
                 case 3: //Choix 3 charge une partie déjà sauvegarder
+                    System.out.println();
                     System.out.println(ConsoleColors.BLUE_BOLD + "Chargement d'une sauvegarde" + ConsoleColors.RESET);
 
                     break;
