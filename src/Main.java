@@ -65,6 +65,7 @@ public class Main {
                     System.out.println();
                     System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "La partie commence !" + ConsoleColors.RESET);
                     Plateau monPlateau = new Plateau(10,11);
+                    monPlateau.afficherPlateau();
                     break;
                 case 3: //Choix 3 charge une partie déjà sauvegarder
                     System.out.println();
