@@ -20,19 +20,26 @@ public class Main {
     }
 
     public static void MenuDetruire(Plateau LePlateau){
-        // Demander à l'utilisateur de détruire une case spécifique
         Scanner scanner = new Scanner(System.in);
-        System.out.printf("\n Entrez la lettre et le nombre de la case (ex. C:9) : ");
-        String input = scanner.nextLine().toUpperCase();
-        // Extraire la lettre et le nombre de l'entrée utilisateur
-        char lettre = input.charAt(0);
-        int nombre = Integer.parseInt(input.substring(2));
+        String input;
+        char lettre;
+        int nombre;
+
+        while (true) {
+            System.out.printf(ConsoleColors.WHITE_BRIGHT + "\nEntrez la lettre et le nombre de la case (ex. C:9) : " + ConsoleColors.RESET);
+            input = scanner.nextLine().toUpperCase();
+
+            if (input.matches("[A-J]:[1-9]")) {
+                lettre = input.charAt(0);
+                nombre = Integer.parseInt(input.substring(2));
+                break;
+            } else {
+                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous devez entrer une lettre (A-J) et un nombre (1-9) séparés par un deux-points (:)." + ConsoleColors.RESET);
+            }
+        }
 
         // Détruire la case spécifiée
         LePlateau.detruireCase(lettre, nombre);
-        LePlateau.passerTour();
-
-
     }
 
     public static void Jeu(Plateau LePlateau){
@@ -109,7 +116,7 @@ public class Main {
                     Jeu(LePlateau);
 
                 default: //Choix par defaut si vous mettez quelque chose de pas valide
-                    System.out.println(ConsoleColors.RED_BRIGHT + "Choix non valide. Veuillez sélectionner une action valide." + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Choix non valide. Veuillez sélectionner une action valide." + ConsoleColors.RESET);
             }
 
         } while (choix.length() != 5);
@@ -167,7 +174,7 @@ public class Main {
 
 
                 default: //Choix par defaut si vous mettez quelque chose de pas valide
-                    System.out.println(ConsoleColors.RED_BRIGHT + "Choix non valide. Veuillez sélectionner une action valide." + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Choix non valide. Veuillez sélectionner une action valide." + ConsoleColors.RESET);
             }
 
         } while (choix != 4);
@@ -187,7 +194,8 @@ public class Main {
             System.out.printf(ConsoleColors.WHITE_BRIGHT + "Entrez le numéro de votre choix : " + ConsoleColors.RESET);
 
             while (!scanner.hasNextInt()) {
-                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous devez entrer un nombre." + ConsoleColors.RESET);
+                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous devez entrer un nombre (1-4)." + ConsoleColors.RESET);
+                MenuCommencement();
                 scanner.next();
             }
 
@@ -246,7 +254,7 @@ public class Main {
                     System.exit(0);
 
                 default: //Choix par defaut si vous mettez quelque chose de pas valide
-                    System.out.println(ConsoleColors.RED_BRIGHT + "Choix non valide. Veuillez sélectionner une action valide." + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Choix non valide. Veuillez sélectionner une action valide." + ConsoleColors.RESET);
             }
 
     }
