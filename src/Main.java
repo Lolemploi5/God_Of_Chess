@@ -67,6 +67,7 @@ public class Main {
                 case 2: // choix 2 créer une nouvelle partie
                     System.out.println("Nouvelle partie ...");
                     Plateau monPlateau = new Plateau(10,11);
+                    monPlateau.afficherPlateau();
                     break;
                 case 3: //Choix 3 charge une partie déjà sauvegarder
                     System.out.println("Chargement d'une sauvegarde");
