@@ -29,7 +29,7 @@ public class Main {
             System.out.printf(ConsoleColors.WHITE_BRIGHT + "\nEntrez la lettre et le nombre de la case (ex. C:9) : " + ConsoleColors.RESET);
             input = scanner.nextLine().toUpperCase();
 
-            if (input.matches("[A-J]:[1-9]")) {
+            if (input.matches("[A-J]:[1-11]")) {
                 lettre = input.charAt(0);
                 nombre = Integer.parseInt(input.substring(2));
                 break;
