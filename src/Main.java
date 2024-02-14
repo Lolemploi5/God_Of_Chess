@@ -85,6 +85,7 @@ public class Main {
                     if (LePlateau.deplacerJoueur(0,-1)){
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous montez d'une case" + ConsoleColors.RESET);
                         MenuDetruire(LePlateau);
+                        LePlateau.passerTour();
                     }
                     else{
                         System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas monter d'une case" + ConsoleColors.RESET);
@@ -97,6 +98,7 @@ public class Main {
                         System.out.println();
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous descendez d'une case" + ConsoleColors.RESET);
                         MenuDetruire(LePlateau);
+                        LePlateau.passerTour();
                     }
                     else{
                         System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas descendre d'une case" + ConsoleColors.RESET);
@@ -111,6 +113,7 @@ public class Main {
                         System.out.println();
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous vous deplacez d'une case vers la droite" + ConsoleColors.RESET);
                         MenuDetruire(LePlateau);
+                        LePlateau.passerTour();
                     }
                     else{
                         System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas vous deplacer d'une case vers la droite" + ConsoleColors.RESET);
@@ -123,6 +126,7 @@ public class Main {
                         System.out.println();
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous vous deplacez d'une case vers la gauche" + ConsoleColors.RESET);
                         MenuDetruire(LePlateau);
+                        LePlateau.passerTour();
                     }
                     else{
                         System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas vous deplacer d'une case vers la gauche" + ConsoleColors.RESET);
