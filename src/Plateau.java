@@ -77,14 +77,14 @@ public class Plateau {
             if (x >= 0 && x < largeur && y >= 0 && y < hauteur && casesDestructibles[x][y]) {
                 casesDestructibles[y][x] = false;
 
-                System.out.println("\nCase (" + lettre + ", " + nombre + ") détruite !\n");
+                System.out.println(ConsoleColors.BLUE_BOLD + "\nCase (" + lettre + ", " + nombre + ") détruite !\n" + ConsoleColors.RESET);
 
             } else {
-                System.out.println("\nImpossible de détruire la case. Coordonnées invalides ou case déjà détruite.\n");
+                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Impossible de détruire la case. Coordonnées invalides ou case déjà détruite.\n" + ConsoleColors.RESET);
             }
 
         } else {
-            System.out.println("\nCe n'est pas le tour de " + joueurCourant.getPseudo() + ". Impossible de détruire la case.\n");
+            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Ce n'est pas le tour de " + joueurCourant.getPseudo() + ". Impossible de détruire la case.\n" + ConsoleColors.RESET);
         }
     }
 
@@ -136,7 +136,7 @@ public class Plateau {
             deplacementPossible = true;
 
         } else {
-            System.out.println("\nDéplacement impossible. La nouvelle position est hors du plateau, la case est déjà détruite ou un joueur se trouve sur la case.\n");
+            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Déplacement impossible. La nouvelle position est hors du plateau, la case est déjà détruite ou un joueur se trouve sur la case.\n" + ConsoleColors.RESET);
             deplacementPossible = false;
         }
 

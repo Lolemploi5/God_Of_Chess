@@ -127,7 +127,7 @@ public class Main {
                     else{
                         System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas vous deplacer d'une case vers la gauche" + ConsoleColors.RESET);
                     }
-                    
+
                     Jeu(LePlateau);
 
                 default: //Choix par defaut si vous mettez quelque chose de pas valide
@@ -240,12 +240,12 @@ public class Main {
                     System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "Nouvelle partie ..." + ConsoleColors.RESET);
                     Scanner myObj = new Scanner(System.in);  //Créer un scan de l'objet
 
-                    System.out.println(ConsoleColors.WHITE_BRIGHT + "Entrez le pseudo du joueur 1 ?" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "Entrez le pseudo du joueur 1 ?" + ConsoleColors.RESET);
                     j1Pseudo = myObj.nextLine();  //Lecture du pseudo du joueur 1
                     Joueur joueur1 = new Joueur(5,5,j1Pseudo);
 
 
-                    System.out.println(ConsoleColors.WHITE_BRIGHT + "Entrez le pseudo du joueur 2 ?" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "Entrez le pseudo du joueur 2 ?" + ConsoleColors.RESET);
                     j2Pseudo = myObj.nextLine();    //Lecture du pseudo du joueur 2
 
                     Joueur joueur2 = new Joueur(5,4, j2Pseudo);
@@ -261,7 +261,7 @@ public class Main {
 
                     break;
                 case 4: //Choix 4 quitte le jeu
-                    System.out.println(ConsoleColors.RED_BOLD + "Au revoir !" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Au revoir !" + ConsoleColors.RESET);
                     scanner.close();
                     System.exit(0);
 
