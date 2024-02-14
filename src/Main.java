@@ -29,12 +29,12 @@ public class Main {
             System.out.printf(ConsoleColors.WHITE_BRIGHT + "\nEntrez la lettre et le nombre de la case (ex. C:9) : " + ConsoleColors.RESET);
             input = scanner.nextLine().toUpperCase();
 
-            if (input.matches("[A-J]:[1-9]")) {
+            if (input.matches("[A-J]:[1-11]")) {
                 lettre = input.charAt(0);
                 nombre = Integer.parseInt(input.substring(2));
                 break;
             } else {
-                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous devez entrer une lettre (A-J) et un nombre (1-9) séparés par un deux-points (:)." + ConsoleColors.RESET);
+                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous devez entrer une lettre (A-J) et un nombre (1-11) séparés par un deux-points (:)." + ConsoleColors.RESET);
             }
         }
 
