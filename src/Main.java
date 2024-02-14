@@ -79,40 +79,55 @@ public class Main {
                     Jeu(LePlateau);
 
                     break;
-                case "/haut": //Choix 3 charge une partie déjà sauvegarder
+                case "/haut":
+
                     System.out.println();
-                    System.out.println(ConsoleColors.BLUE_BOLD + "Vous montez d'une case" + ConsoleColors.RESET);
-                    LePlateau.deplacerJoueur(0,-1);
-                    MenuDetruire(LePlateau);
+                    if (LePlateau.deplacerJoueur(0,-1)){
+                        System.out.println(ConsoleColors.BLUE_BOLD + "Vous montez d'une case" + ConsoleColors.RESET);
+                        MenuDetruire(LePlateau);
+                    }
+                    else{
+                        System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas monter d'une case" + ConsoleColors.RESET);
+                    }
+                    Jeu(LePlateau);
+
+                    break;
+                case "/bas":
+                    if(LePlateau.deplacerJoueur(0,1)){
+                        System.out.println();
+                        System.out.println(ConsoleColors.BLUE_BOLD + "Vous descendez d'une case" + ConsoleColors.RESET);
+                        MenuDetruire(LePlateau);
+                    }
+                    else{
+                        System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas descendre d'une case" + ConsoleColors.RESET);
+                    }
 
                     Jeu(LePlateau);
 
                     break;
-                case "/bas": //Choix 4 quitte le jeu
-                    System.out.println();
-                    System.out.println(ConsoleColors.BLUE_BOLD + "Vous descendez d'une case" + ConsoleColors.RESET);
-                    LePlateau.deplacerJoueur(0,1);
 
-                    MenuDetruire(LePlateau);
+                case "/droite":
+                    if(LePlateau.deplacerJoueur(1,0)){
+                        System.out.println();
+                        System.out.println(ConsoleColors.BLUE_BOLD + "Vous vous deplacez d'une case vers la droite" + ConsoleColors.RESET);
+                        MenuDetruire(LePlateau);
+                    }
+                    else{
+                        System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas vous deplacer d'une case vers la droite" + ConsoleColors.RESET);
+                    }
                     Jeu(LePlateau);
 
                     break;
-
-                case "/droite": //Choix 4 Revenir a la game
-                    System.out.println();
-                    System.out.println(ConsoleColors.BLUE_BOLD + "Vous vous deplacez d'une case vers la droite" + ConsoleColors.RESET);
-                    LePlateau.deplacerJoueur(1,0);
-
-                    MenuDetruire(LePlateau);
-                    Jeu(LePlateau);
-
-                    break;
-                case "/gauche": //Choix 5 Revenir a la game
-                    System.out.println();
-                    System.out.println(ConsoleColors.BLUE_BOLD + "Vous vous deplacez d'une case vers la gauche" + ConsoleColors.RESET);
-                    LePlateau.deplacerJoueur(-1,0);
-
-                    MenuDetruire(LePlateau);
+                case "/gauche":
+                    if(LePlateau.deplacerJoueur(-1,0)){
+                        System.out.println();
+                        System.out.println(ConsoleColors.BLUE_BOLD + "Vous vous deplacez d'une case vers la gauche" + ConsoleColors.RESET);
+                        MenuDetruire(LePlateau);
+                    }
+                    else{
+                        System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas vous deplacer d'une case vers la gauche" + ConsoleColors.RESET);
+                    }
+                    
                     Jeu(LePlateau);
 
                 default: //Choix par defaut si vous mettez quelque chose de pas valide

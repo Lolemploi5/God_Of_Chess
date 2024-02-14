@@ -118,7 +118,8 @@ public class Plateau {
         }
     }
 
-    public void deplacerJoueur(int deltaX, int deltaY) {
+    public boolean deplacerJoueur(int deltaX, int deltaY) {
+        boolean deplacementPossible = false;
         int newX = joueurCourant.getX() + deltaX;
         int newY = joueurCourant.getY() + deltaY;
 
@@ -132,13 +133,17 @@ public class Plateau {
 
             // Détruire la case après le déplacement
             casesDestructibles[newX][newY] = false;
+            deplacementPossible = true;
+
         } else {
             System.out.println("\nDéplacement impossible. La nouvelle position est hors du plateau, la case est déjà détruite ou un joueur se trouve sur la case.\n");
+            deplacementPossible = false;
         }
 
+    return deplacementPossible;
+
+
+
     }
-
-
-
 }
 
