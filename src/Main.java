@@ -19,7 +19,8 @@ public class Main {
 
     public static void MenuCommencement(){
         Scanner scanner = new Scanner(System.in);
-
+            int choix;
+        do {
             //Affichage de tous les choix possible
             System.out.println();
             System.out.println(ConsoleColors.WHITE_BRIGHT + "Faites votre choix :" + ConsoleColors.RESET);
@@ -29,8 +30,14 @@ public class Main {
             System.out.println(ConsoleColors.RED_BOLD + "4. Quitter" + ConsoleColors.RESET);
             System.out.printf(ConsoleColors.WHITE_BRIGHT + "Entrez le numéro de votre choix : " + ConsoleColors.RESET);
 
+            while (!scanner.hasNextInt()) {
+                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous devez entrer un nombre." + ConsoleColors.RESET);
+                scanner.next();
+            }
 
-            int choix = scanner.nextInt(); //Lecture de notre choix
+            choix = scanner.nextInt(); //Lecture de notre choix
+
+
 
             switch (choix) {
                 case 1: //Choix 1 affiche les regles et invoque la function regle menu
@@ -83,4 +90,6 @@ public class Main {
     }
 
 
+        while (choix != 3);
+    }
 }
