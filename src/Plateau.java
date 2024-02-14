@@ -53,9 +53,9 @@ public class Plateau {
                 if (joueur.getX() == j && joueur.getY() == i) {
                     System.out.print("J1 "); // Position du joueur
                 } else if (casesDestructibles[j][i]) {
-                    System.out.print("██ "); // Case destructible
+                    System.out.print(ConsoleColors.WHITE_BRIGHT + "██ "); // Case destructible
                 } else {
-                    System.out.print("██ "); // Case déjà détruite
+                    System.out.print(ConsoleColors.BLACK_BRIGHT + "██ "); // Case déjà détruite
                 }
             }
             System.out.println();
