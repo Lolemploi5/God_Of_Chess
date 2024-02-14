@@ -1,72 +1,82 @@
 public class Plateau {
 
-    private int largeur;
-    private int hauteur;
-    private Joueur joueur1;
-    private Joueur joueur2;
+    private int largeur;//Largeur du plateau
+    private int hauteur;//Hauteur du plateau
+    private Joueur joueur1;//Joueur 1
+    private Joueur joueur2;//Joueur 2
 
-    private Joueur joueurCourant;
+    private Joueur joueurCourant;//Joueur entrain de jouer
 
-    private boolean[][] casesDestructibles;
+    private boolean[][] casesDestructibles;//Cases destructibles
 
-    public Joueur getJoueur1() {
-        return joueur1;
+    public Joueur getJoueur1() {//Récupérer le joueur 1
+        return joueur1;//Retourne le joueur 1
     }
 
-    public void setJoueur1(Joueur joueur1) {
-        this.joueur1 = joueur1;
+    public void setJoueur1(Joueur joueur1) {//Modifier le joueur 1
+        this.joueur1 = joueur1;//Affecter le joueur 1
     }
 
-    public Joueur getJoueur2() {
-        return joueur2;
+    public Joueur getJoueur2() {//Récupérer le joueur 2
+        return joueur2;//Retourne le joueur 2
     }
 
-    public void setJoueur2(Joueur joueur2) {
-        this.joueur2 = joueur2;
+    public void setJoueur2(Joueur joueur2) {//Modifier le joueur 2
+        this.joueur2 = joueur2;//Affecter le joueur 2
     }
-    public String NomJoueur(){
-        return getJoueurCourant().getPseudo();
+    public String NomJoueur(){//Récupérer le nom du joueur courant
+        return getJoueurCourant().getPseudo();//Retourne le nom du joueur courant
     }
-    public Joueur getJoueurCourant() {
-        return joueurCourant;
-    }
-
-    public void setJoueurCourant(Joueur joueurCourant) {
-        this.joueurCourant = joueurCourant;
+    public Joueur getJoueurCourant() {//Récupérer le joueur courant
+        return joueurCourant;//Retourne le joueur courant
     }
 
-    public Plateau(int largeur, int hauteur , Joueur j1 , Joueur j2) {
-        this.largeur = largeur;
-        this.hauteur = hauteur;
+    public void setJoueurCourant(Joueur joueurCourant) {//Modifier le joueur courant
+        this.joueurCourant = joueurCourant;//Affecter le joueur courant
+    }
+
+    public Plateau(int largeur, int hauteur , Joueur j1 , Joueur j2) {//Constructeur
+        this.largeur = largeur;//Affecter la largeur
+        this.hauteur = hauteur;//Affecter la hauteur
         this.joueurCourant = j1; // Initialiser le joueur courant au joueur 1 au début
         this.joueur1 = j1; // Le joueur démarre en haut à gauche
         this.joueur2 = j2; // Le joueur démarre en haut à gauche
         this.casesDestructibles = new boolean[largeur][hauteur];
-        initialiserCasesDestructibles();
+        initialiserCasesDestructibles();//Initialiser les cases destructibles
     }
-
+    /**
+     * Initialiser toutes les cases comme destructibles au début
+     */
     private void initialiserCasesDestructibles() {
         // Initialise toutes les cases comme destructibles au début
-        for (int i = 0; i < largeur; i++) {
-            for (int j = 0; j < hauteur; j++) {
-                casesDestructibles[i][j] = true;
+        for (int i = 0; i < largeur; i++) {//Parcourir les colonnes
+            for (int j = 0; j < hauteur; j++) {//Parcourir les lignes
+                casesDestructibles[i][j] = true;//Initialiser les cases destructibles
             }
         }
     }
-    public void passerTour() {
+    /**
+     * Vérifier si le joueur courant est bloqué
+     * retourne true si le joueur courant est bloqué, false sinon
+     */
+    public void passerTour() {//Passer le tour
         // Changer le joueur courant
-        if (joueurCourant == joueur1) {
-            joueurCourant = joueur2;
+        if (joueurCourant == joueur1) {//Si le joueur courant est le joueur 1
+            joueurCourant = joueur2;//Le joueur courant devient le joueur 2
             setJoueurCourant(getJoueur2());
-        } else {
-            joueurCourant = joueur1;
+            System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "\nC'est le tour de " + ConsoleColors.BLUE_BOLD_BRIGHT + joueurCourant.getPseudo() + ConsoleColors.PURPLE_BOLD_BRIGHT + " !" + ConsoleColors.RESET);
+            System.out.println();
+        } else {//Sinon le joueur courant est le joueur 2
+            joueurCourant = joueur1;//Affecter le joueur courant au joueur 1
             setJoueurCourant(getJoueur1());
+            System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "\nC'est le tour de " + ConsoleColors.RED_BOLD_BRIGHT + joueurCourant.getPseudo() + ConsoleColors.PURPLE_BOLD_BRIGHT + " !" + ConsoleColors.RESET);
+            System.out.println();
+
         }
 
-        System.out.println("\nC'est le tour de " + joueurCourant.getPseudo() + " !");
     }
 
-    public void detruireCase(char lettre, int nombre) {
+    public void detruireCase(char lettre, int nombre) {//Détruire une case
 
         // Vérifier si c'est le tour du joueur courant
         if (joueurCourant == joueur1 || joueurCourant == joueur2) {
@@ -89,23 +99,23 @@ public class Plateau {
     }
 
 
-    public void afficherPlateau() {
+    public void afficherPlateau() {//Afficher le plateau
         System.out.print("  ");
-        for (int i = 1; i <= largeur; i++) {
+        for (int i = 1; i <= largeur; i++) {//Parcourir les colonnes
             System.out.print(" " + i + " ");
         }
         System.out.println();
 
-        char lettre = 'A';
+        char lettre = 'A';//Initialiser la lettre A
 
-        for (int i = 0; i < hauteur; i++) {
+        for (int i = 0; i < hauteur; i++) {//Parcourir les lignes
             System.out.print(" " + lettre + " ");
-            lettre++;
+            lettre++;//Incrémenter la lettre
 
-            for (int j = 0; j < largeur; j++) {
-                if (joueur1.getX() == j && joueur1.getY() == i) {
+            for (int j = 0; j < largeur; j++) {//Parcourir les colonnes
+                if (joueur1.getX() == j && joueur1.getY() == i) {//Si la position du joueur 1 est égale à la position actuelle
                     System.out.print(ConsoleColors.BLUE_BRIGHT +"J1"+ ConsoleColors.RESET+" "); // Position du joueur 1
-                }else if(joueur2.getX() == j && joueur2.getY() == i)
+                }else if(joueur2.getX() == j && joueur2.getY() == i)//Si la position du joueur 2 est égale à la position actuelle
                 {
                     System.out.print(ConsoleColors.RED_BRIGHT +"J2"+ConsoleColors.RESET+ " "); // Position du joueur 2
                 }else if (casesDestructibles[j][i]) {
@@ -118,27 +128,27 @@ public class Plateau {
         }
     }
 
-    public boolean deplacerJoueur(int deltaX, int deltaY) {
-        boolean deplacementPossible = false;
-        int newX = joueurCourant.getX() + deltaX;
-        int newY = joueurCourant.getY() + deltaY;
+    public boolean deplacerJoueur(int deltaX, int deltaY) {//Déplacer le joueur
+        boolean deplacementPossible = false;//Initialiser le déplacement possible à faux
+        int newX = joueurCourant.getX() + deltaX;//Nouvelle position en x
+        int newY = joueurCourant.getY() + deltaY;//Nouvelle position en y
 
         // Vérifier si la nouvelle position est valide
         if (newX >= 0 && newX < largeur && newY >= 0 && newY < hauteur
                 && casesDestructibles[newX][newY]
                 && !((joueur1.getX() == newX && joueur1.getY() == newY) || (joueur2.getX() == newX && joueur2.getY() == newY))) {
 
-            joueurCourant.setX(newX);
-            joueurCourant.setY(newY);
+            joueurCourant.setX(newX);//Affecter la nouvelle position en x
+            joueurCourant.setY(newY);//Affecter la nouvelle position en y
 
-            deplacementPossible = true;
+            deplacementPossible = true;//Le déplacement est possible
 
         } else {
             System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Déplacement impossible. La nouvelle position est hors du plateau, la case est déjà détruite ou un joueur se trouve sur la case.\n" + ConsoleColors.RESET);
-            deplacementPossible = false;
+            deplacementPossible = false;//Le déplacement est impossible
         }
 
-    return deplacementPossible;
+    return deplacementPossible;//Retourner si le déplacement est possible
 
 
 
