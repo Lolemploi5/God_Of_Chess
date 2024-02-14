@@ -220,15 +220,12 @@ public class Main {
                     System.out.println(ConsoleColors.WHITE_BRIGHT + "Entrez le pseudo du joueur 1 ?" + ConsoleColors.RESET);
                     j1Pseudo = myObj.nextLine();  //Lecture du pseudo du joueur 1
                     Joueur joueur1 = new Joueur(5,5,j1Pseudo);
-                    joueur1.setPseudo(j1Pseudo);
-                    System.out.println(joueur1.getPseudo());
 
 
                     System.out.println(ConsoleColors.WHITE_BRIGHT + "Entrez le pseudo du joueur 2 ?" + ConsoleColors.RESET);
                     j2Pseudo = myObj.nextLine();    //Lecture du pseudo du joueur 2
 
                     Joueur joueur2 = new Joueur(5,4, j2Pseudo);
-                    joueur2.setPseudo(j2Pseudo);
 
                     System.out.println();
                     System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "La partie commence !" + ConsoleColors.RESET);

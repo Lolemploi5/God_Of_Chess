@@ -8,6 +8,7 @@ class Joueur {
     public Joueur(int x, int y, String pseudo ) {
         this.x = x;
         this.y = y;
+        this.pseudo = pseudo;
     }
     public String getPseudo() {
         return pseudo;
