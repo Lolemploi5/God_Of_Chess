@@ -59,28 +59,66 @@ public class Plateau {
      * Vérifier si le joueur courant est bloqué
      * retourne true si le joueur courant est bloqué, false sinon
      */
-    public void passerTour() {//Passer le tour
+    public void passerTour() {
         // Changer le joueur courant
-        if (joueurCourant == joueur1) {//Si le joueur courant est le joueur 1
-            joueurCourant = joueur2;//Le joueur courant devient le joueur 2
+        if (joueurCourant == joueur1) {
+            joueurCourant = joueur2;
             setJoueurCourant(getJoueur2());
             System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "\nC'est le tour de " + ConsoleColors.BLUE_BOLD_BRIGHT + joueurCourant.getPseudo() + ConsoleColors.PURPLE_BOLD_BRIGHT + " !" + ConsoleColors.RESET);
             System.out.println();
-        } else {//Sinon le joueur courant est le joueur 2
-            joueurCourant = joueur1;//Affecter le joueur courant au joueur 1
+        } else {
+            joueurCourant = joueur1;
             setJoueurCourant(getJoueur1());
             System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "\nC'est le tour de " + ConsoleColors.RED_BOLD_BRIGHT + joueurCourant.getPseudo() + ConsoleColors.PURPLE_BOLD_BRIGHT + " !" + ConsoleColors.RESET);
             System.out.println();
-
         }
 
+        winLoose(); // Vérifier si un joueur est bloqué après chaque tour
     }
+
+    public void winLoose() {
+        boolean joueur1Bloque = estBloque(joueur1);
+        boolean joueur2Bloque = estBloque(joueur2);
+        // Vérifier si les deux joueurs sont bloqués
+        if (joueur1Bloque && joueur2Bloque) {
+            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Les deux joueurs sont bloqués. La partie est nulle." + ConsoleColors.RESET);
+            // Ajoutez ici le code pour gérer le cas d'une partie nulle (si nécessaire).
+            Menus.MenuCommencement();
+
+        } else if (joueur1Bloque) {
+            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + joueur1.getPseudo() + " est bloqué. " + joueur2.getPseudo() + " gagne !" + ConsoleColors.RESET);
+            // Ajoutez ici le code pour gérer la victoire de joueur2 (si nécessaire).
+            Menus.MenuCommencement();
+
+        } else if (joueur2Bloque) {
+            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + joueur2.getPseudo() + " est bloqué. " + joueur1.getPseudo() + " gagne !" + ConsoleColors.RESET);
+            // Ajoutez ici le code pour gérer la victoire de joueur1 (si nécessaire).
+            Menus.MenuCommencement();
+
+        }
+    }
+
+    // Méthode auxiliaire pour vérifier si un joueur est bloqué
+    private boolean estBloque(Joueur joueur) {
+        int x = joueur.getX();
+        int y = joueur.getY();
+
+        // Vérifier si le joueur peut se déplacer dans n'importe quelle direction
+        return !(peutSeDeplacer(x + 1, y) || peutSeDeplacer(x - 1, y) || peutSeDeplacer(x, y + 1) || peutSeDeplacer(x, y - 1));
+    }
+
+    // Méthode auxiliaire pour vérifier si une case est accessible
+    private boolean peutSeDeplacer(int x, int y) {
+        return (x >= 0 && x < largeur && y >= 0 && y < hauteur && casesDestructibles[x][y]
+                && !((joueur1.getX() == x && joueur1.getY() == y) || (joueur2.getX() == x && joueur2.getY() == y)));
+    }
+
 
     public void detruireCase(char lettre, int nombre, Plateau LePlateau) {//Détruire une case
         // Vérifier si c'est le tour du joueur courant
         if (joueurCourant == joueur1 || joueurCourant == joueur2) {
-            int y = lettre - 'A';
-            int x = nombre - 1;
+            int x = nombre - 1;  // Ajuster les coordonnées pour représenter les colonnes
+            int y = lettre - 'A';  // Ajuster les coordonnées pour représenter les lignes
     
             // Vérifier si les coordonnées sont valides
             if ((x >= 0) && (x < largeur) && (y >= 0) && (y < hauteur) && (casesDestructibles[x][y])) {
@@ -99,6 +137,7 @@ public class Plateau {
     
                     System.out.println(ConsoleColors.BLUE_BOLD + "\nCase (" + lettre + ", " + nombre + ") détruite !\n" + ConsoleColors.RESET);
                     passerTour();
+
                 }
     
             } else {
