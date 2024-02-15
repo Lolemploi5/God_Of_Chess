@@ -34,7 +34,7 @@ public class Main {
                 nombre = Integer.parseInt(input.substring(2));//Récupération du nombre
                 break;
             } else {
-                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous devez entrer une lettre (A-J) et un nombre (1-11) séparés par un deux-points (:)." + ConsoleColors.RESET);
+                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Vous devez entrer une lettre (A-J) et un nombre (1-11) séparés par deux-points (:)." + ConsoleColors.RESET);
             }
         }
 
