@@ -85,11 +85,11 @@ public class Plateau {
             Menus.MenuCommencement();
 
         } else if (joueur1Bloque) {
-            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + joueur1.getPseudo() + " est bloqué. " + joueur2.getPseudo() + " gagne !" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Le joueur " + joueur1.getPseudo() + " est bloqué et ne peut donc plus se déplacer. " + "le joueur " + joueur2.getPseudo() + " gagne !" + ConsoleColors.RESET);
             Menus.MenuCommencement();
 
         } else if (joueur2Bloque) {
-            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + joueur2.getPseudo() + " est bloqué. " + joueur1.getPseudo() + " gagne !" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Le joueur " + joueur2.getPseudo() + " est bloqué et ne peut donc plus se déplacer. " + "le joueur " + joueur1.getPseudo() + " gagne !" + ConsoleColors.RESET);
             Menus.MenuCommencement();
 
         }
@@ -122,17 +122,17 @@ public class Plateau {
     
                 // Vérifier si la case contient un joueur
                 if ((joueur1.getX() == x && joueur1.getY() == y) || (joueur2.getX() == x && joueur2.getY() == y)) {
-                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Impossible de détruire la case. Un joueur occupe cette case.\n" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Impossible de détruire la case. Un joueur occupe cette case." + ConsoleColors.RESET);
                     Main.MenuDetruire(LePlateau);
 
                 } else if (!casesDestructibles[x][y]) {//Vérifier si la case est déjà détruite
-                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Impossible de détruire la case. La case est déjà détruite.\n" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Impossible de détruire la case. La case est déjà détruite." + ConsoleColors.RESET);
                     Main.MenuDetruire(LePlateau);
 
                 } else {
                     casesDestructibles[x][y] = false;
     
-                    System.out.println(ConsoleColors.BLUE_BOLD + "\nCase (" + lettre + ", " + nombre + ") détruite !\n" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.BLUE_BOLD + "\nCase (" + lettre + ", " + nombre + ") détruite !" + ConsoleColors.RESET);
                     passerTour();
 
                 }
