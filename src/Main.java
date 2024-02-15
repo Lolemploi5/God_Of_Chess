@@ -39,7 +39,7 @@ public class Main {
         }
 
         // Détruire la case spécifiée
-        LePlateau.detruireCase(lettre, nombre);
+        LePlateau.detruireCase(lettre, nombre, LePlateau);
     }
     /* Fonction pour le jeu */
     public static void Jeu(Plateau LePlateau){
@@ -95,7 +95,6 @@ public class Main {
                     if (LePlateau.deplacerJoueur(0,-1)){//Vérification si le joueur peut monter d'une case
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous montez d'une case" + ConsoleColors.RESET);
                         MenuDetruire(LePlateau);//Invocation de la fonction pour détruire une case
-                        LePlateau.passerTour();//Passer le tour
                     }
                     else{
                         System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas monter d'une case" + ConsoleColors.RESET);
@@ -108,7 +107,6 @@ public class Main {
                         System.out.println();
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous descendez d'une case" + ConsoleColors.RESET);
                         MenuDetruire(LePlateau);//Invocation de la fonction pour détruire une case
-                        LePlateau.passerTour();//Passer le tour
                     }
                     else{
                         System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas descendre d'une case" + ConsoleColors.RESET);
@@ -123,7 +121,6 @@ public class Main {
                         System.out.println();
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous vous deplacez d'une case vers la droite" + ConsoleColors.RESET);
                         MenuDetruire(LePlateau);//Invocation de la fonction pour détruire une case
-                        LePlateau.passerTour();//Passer le tour
                     }
                     else{
                         System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas vous deplacer d'une case vers la droite" + ConsoleColors.RESET);
@@ -136,7 +133,6 @@ public class Main {
                         System.out.println();
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous vous deplacez d'une case vers la gauche" + ConsoleColors.RESET);
                         MenuDetruire(LePlateau);//Invocation de la fonction pour détruire une case
-                        LePlateau.passerTour();//Passer le tour
                     }
                     else{
                         System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas vous deplacer d'une case vers la gauche" + ConsoleColors.RESET);

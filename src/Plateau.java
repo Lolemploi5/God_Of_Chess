@@ -76,28 +76,42 @@ public class Plateau {
 
     }
 
-    public void detruireCase(char lettre, int nombre) {//Détruire une case
-
+    public void detruireCase(char lettre, int nombre, Plateau LePlateau) {//Détruire une case
         // Vérifier si c'est le tour du joueur courant
         if (joueurCourant == joueur1 || joueurCourant == joueur2) {
-            int x = lettre - 'A';
-            int y = nombre - 1;
-
+            int y = lettre - 'A';
+            int x = nombre - 1;
+    
             // Vérifier si les coordonnées sont valides
-            if (x >= 0 && x < largeur && y >= 0 && y < hauteur && casesDestructibles[x][y]) {
-                casesDestructibles[y][x] = false;
+            if ((x >= 0) && (x < largeur) && (y >= 0) && (y < hauteur) && (casesDestructibles[x][y])) {
+    
+                // Vérifier si la case contient un joueur
+                if ((joueur1.getX() == x && joueur1.getY() == y) || (joueur2.getX() == x && joueur2.getY() == y)) {
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Impossible de détruire la case. Un joueur occupe cette case.\n" + ConsoleColors.RESET);
+                    Main.MenuDetruire(LePlateau);
 
-                System.out.println(ConsoleColors.BLUE_BOLD + "\nCase (" + lettre + ", " + nombre + ") détruite !\n" + ConsoleColors.RESET);
+                } else if (!casesDestructibles[x][y]) {
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Impossible de détruire la case. La case est déjà détruite.\n" + ConsoleColors.RESET);
+                    Main.MenuDetruire(LePlateau);
 
+                } else {
+                    casesDestructibles[x][y] = false;
+    
+                    System.out.println(ConsoleColors.BLUE_BOLD + "\nCase (" + lettre + ", " + nombre + ") détruite !\n" + ConsoleColors.RESET);
+                    passerTour();
+                }
+    
             } else {
-                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Impossible de détruire la case. Coordonnées invalides ou case déjà détruite.\n" + ConsoleColors.RESET);
-            }
+                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Impossible de détruire la case. Coordonnées invalides.\n" + ConsoleColors.RESET);
+                Main.MenuDetruire(LePlateau);
 
+            }
+    
         } else {
             System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Ce n'est pas le tour de " + joueurCourant.getPseudo() + ". Impossible de détruire la case.\n" + ConsoleColors.RESET);
         }
     }
-
+    
 
     public void afficherPlateau() {//Afficher le plateau
         System.out.print("  ");
