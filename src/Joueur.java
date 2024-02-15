@@ -3,9 +3,10 @@ class Joueur {
     private String pseudo;
     private int x;
     private int y;
+    private int points;
 
 
-    public Joueur(int x, int y, String pseudo ) {
+    public Joueur(int x, int y, String pseudo, int points ) {
         this.x = x;
         this.y = y;
         this.pseudo = pseudo;
@@ -17,6 +18,7 @@ class Joueur {
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
+
     public int getX() {
         return x;
     }
@@ -32,4 +34,6 @@ class Joueur {
     public void setY(int y) {
         this.y = y;
     }
+
+
 }

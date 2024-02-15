@@ -76,6 +76,8 @@ public class Plateau {
         winLoose(); // Vérifier si un joueur est bloqué après chaque tour
     }
 
+
+
     public void winLoose() {
         boolean joueur1Bloque = estBloque(joueur1);
         boolean joueur2Bloque = estBloque(joueur2);
@@ -86,10 +88,14 @@ public class Plateau {
 
         } else if (joueur1Bloque) {
             System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Le joueur " + joueur1.getPseudo() + " est bloqué et ne peut donc plus se déplacer. " + "le joueur " + joueur2.getPseudo() + " gagne !" + ConsoleColors.RESET);
+            Main.mettreAJourScores(joueur2,joueur1);
             Menus.MenuCommencement();
 
         } else if (joueur2Bloque) {
+            Main.mettreAJourScores(joueur1,joueur2);
+
             System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Le joueur " + joueur2.getPseudo() + " est bloqué et ne peut donc plus se déplacer. " + "le joueur " + joueur1.getPseudo() + " gagne !" + ConsoleColors.RESET);
+
             Menus.MenuCommencement();
 
         }
