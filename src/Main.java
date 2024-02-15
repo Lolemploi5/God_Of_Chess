@@ -53,7 +53,7 @@ public class Main {
             System.out.println();
             System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "Faites votre choix : " + ConsoleColors.WHITE_BOLD_BRIGHT + LePlateau.NomJoueur() + ConsoleColors.RESET);
             System.out.println(ConsoleColors.YELLOW_BOLD + "/aide " + ConsoleColors.WHITE_BRIGHT + "pour le menu!" + ConsoleColors.RESET);
-            System.out.println(ConsoleColors.BLUE_BOLD + "/haut , /bas , /droite , /gauche" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.BLUE_BOLD + "/h , /b , /d , /g" + ConsoleColors.RESET);
             System.out.printf(ConsoleColors.WHITE_BRIGHT + "Entrez la commande de votre choix : " + ConsoleColors.RESET);
 
             while (!scanner.hasNextLine()) {//Verification si le choix est un nombre
@@ -89,7 +89,7 @@ public class Main {
                     Jeu(LePlateau);//Retour au menu de commencement
 
                     break;
-                case "/haut":
+                case "/h":
 
                     System.out.println();
                     if (LePlateau.deplacerJoueur(0,-1)){//Vérification si le joueur peut monter d'une case
@@ -102,7 +102,7 @@ public class Main {
                     Jeu(LePlateau);
 
                     break;
-                case "/bas":
+                case "/b":
                     if(LePlateau.deplacerJoueur(0,1)){//Vérification si le joueur peut descendre d'une case
                         System.out.println();
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous descendez d'une case" + ConsoleColors.RESET);
@@ -116,7 +116,7 @@ public class Main {
 
                     break;
 
-                case "/droite":
+                case "/d":
                     if(LePlateau.deplacerJoueur(1,0)){//Vérification si le joueur peut se déplacer d'une case vers la droite
                         System.out.println();
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous vous deplacez d'une case vers la droite" + ConsoleColors.RESET);
@@ -128,7 +128,7 @@ public class Main {
                     Jeu(LePlateau);//Retour au menu de commencement
 
                     break;
-                case "/gauche":
+                case "/g":
                     if(LePlateau.deplacerJoueur(-1,0)){//Vérification si le joueur peut se déplacer d'une case vers la gauche
                         System.out.println();
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous vous deplacez d'une case vers la gauche" + ConsoleColors.RESET);
