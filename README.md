@@ -20,6 +20,7 @@ God of Chess est un jeu de stratégie captivant où les joueurs s'affrontent pou
 
     ```bash
     git clone https://github.com/Lolemploi5/God_Of_Chess
+    
     cd God-of-Chess
     ```
 

@@ -31,7 +31,7 @@ public class Jeu{
                 case "/h":
 
                     System.out.println();
-                    if (Joueur.deplacerJoueur(0,-1)){//Vérification si le joueur peut monter d'une case
+                    if (JoueurManagement.deplacerJoueur(0,-1)){//Vérification si le joueur peut monter d'une case
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous montez d'une case" + ConsoleColors.RESET);
                         Menus.MenuDetruire(LePlateau);//Invocation de la fonction pour détruire une case
                     }
@@ -42,7 +42,7 @@ public class Jeu{
 
                     break;
                 case "/b":
-                    if(Joueur.deplacerJoueur(0,1)){//Vérification si le joueur peut descendre d'une case
+                    if(JoueurManagement.deplacerJoueur(0,1)){//Vérification si le joueur peut descendre d'une case
                         System.out.println();
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous descendez d'une case" + ConsoleColors.RESET);
                         Menus.MenuDetruire(LePlateau);//Invocation de la fonction pour détruire une case
@@ -56,7 +56,7 @@ public class Jeu{
                     break;
 
                 case "/d":
-                    if(Joueur.deplacerJoueur(1,0)){//Vérification si le joueur peut se déplacer d'une case vers la droite
+                    if(JoueurManagement.deplacerJoueur(1,0)){//Vérification si le joueur peut se déplacer d'une case vers la droite
                         System.out.println();
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous vous deplacez d'une case vers la droite" + ConsoleColors.RESET);
                         Menus.MenuDetruire(LePlateau);//Invocation de la fonction pour détruire une case
@@ -74,7 +74,7 @@ public class Jeu{
 
                     break;
                 case "/g":
-                    if(Joueur.deplacerJoueur(-1,0)){//Vérification si le joueur peut se déplacer d'une case vers la gauche
+                    if(JoueurManagement.deplacerJoueur(-1,0)){//Vérification si le joueur peut se déplacer d'une case vers la gauche
                         System.out.println();
                         System.out.println(ConsoleColors.BLUE_BOLD + "Vous vous deplacez d'une case vers la gauche" + ConsoleColors.RESET);
                         Menus.MenuDetruire(LePlateau);//Invocation de la fonction pour détruire une case

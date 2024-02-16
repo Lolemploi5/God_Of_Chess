@@ -59,7 +59,7 @@ public class Menus {
 
                     break;
                 case 4: //Choix 4 affiche le tableau des scores
-                    Main.afficherTableauDesScores();
+                    ScoreManagement.afficherTableauDesScores();
                     MenuCommencement(); // Redirigez ensuite l'utilisateur vers le menu de départ
                     break;
 

@@ -11,7 +11,7 @@ public class Plateau {
 
     public static boolean[][] casesDestructibles;//Cases destructibles
 
-    public Joueur getJoueur1() {//Récupérer le joueur 1
+    public static Joueur getJoueur1() {//Récupérer le joueur 1
         return joueur1;//Retourne le joueur 1
     }
 
@@ -19,7 +19,7 @@ public class Plateau {
         this.joueur1 = joueur1;//Affecter le joueur 1
     }
 
-    public Joueur getJoueur2() {//Récupérer le joueur 2
+    public static Joueur getJoueur2() {//Récupérer le joueur 2
         return joueur2;//Retourne le joueur 2
     }
 
@@ -64,32 +64,12 @@ public class Plateau {
             }
         }
     }
-    /**
-     * Vérifier si le joueur courant est bloqué
-     * retourne true si le joueur courant est bloqué, false sinon
-     */
-    public void passerTour() {
-        // Changer le joueur courant
-        if (joueurCourant == joueur1) {
-            joueurCourant = joueur2;
-            setJoueurCourant(getJoueur2());
-            System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "\nC'est le tour de " + ConsoleColors.BLUE_BOLD_BRIGHT + joueurCourant.getPseudo() + ConsoleColors.PURPLE_BOLD_BRIGHT + " !" + ConsoleColors.RESET);
-            System.out.println();
-        } else {
-            joueurCourant = joueur1;
-            setJoueurCourant(getJoueur1());
-            System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "\nC'est le tour de " + ConsoleColors.RED_BOLD_BRIGHT + joueurCourant.getPseudo() + ConsoleColors.PURPLE_BOLD_BRIGHT + " !" + ConsoleColors.RESET);
-            System.out.println();
-        }
-
-        winLoose(); // Vérifier si un joueur est bloqué après chaque tour
-    }
 
 
 
-    public void winLoose() {
-        boolean joueur1Bloque = estBloque(joueur1);
-        boolean joueur2Bloque = estBloque(joueur2);
+    public static void winLoose() {
+        boolean joueur1Bloque = JoueurManagement.estBloque(joueur1);
+        boolean joueur2Bloque = JoueurManagement.estBloque(joueur2);
         // Vérifier si les deux joueurs sont bloqués
         if (joueur1Bloque && joueur2Bloque) {
             Art.JeuPerdu();
@@ -99,12 +79,12 @@ public class Plateau {
         } else if (joueur1Bloque) {
             Art.JeuPerdu();
             System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Le joueur " + joueur1.getPseudo() + " est bloqué et ne peut donc plus se déplacer. " + "le joueur " + joueur2.getPseudo() + " gagne !" + ConsoleColors.RESET);
-            Main.mettreAJourScores(joueur2,joueur1);
+            ScoreManagement.mettreAJourScores(joueur2,joueur1);
             Menus.MenuCommencement();
 
         } else if (joueur2Bloque) {
             Art.JeuPerdu();
-            Main.mettreAJourScores(joueur1,joueur2);
+            ScoreManagement.mettreAJourScores(joueur1,joueur2);
 
             System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Le joueur " + joueur2.getPseudo() + " est bloqué et ne peut donc plus se déplacer. " + "le joueur " + joueur1.getPseudo() + " gagne !" + ConsoleColors.RESET);
 
@@ -113,21 +93,20 @@ public class Plateau {
         }
     }
 
-    // Méthode auxiliaire pour vérifier si un joueur est bloqué
-    private boolean estBloque(Joueur joueur) {
-        int x = joueur.getX();
-        int y = joueur.getY();
+    public static void passerTour() {
+        // Changer le joueur courant
+        if (joueurCourant == joueur1) {
+            joueurCourant = joueur2;
+            System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "\nC'est le tour de " + ConsoleColors.BLUE_BOLD_BRIGHT + Plateau.joueurCourant.getPseudo() + ConsoleColors.PURPLE_BOLD_BRIGHT + " !" + ConsoleColors.RESET);
+            System.out.println();
+        } else {
+            joueurCourant = joueur1;
+            System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "\nC'est le tour de " + ConsoleColors.RED_BOLD_BRIGHT + Plateau.joueurCourant.getPseudo() + ConsoleColors.PURPLE_BOLD_BRIGHT + " !" + ConsoleColors.RESET);
+            System.out.println();
+        }
 
-        // Vérifier si le joueur peut se déplacer dans n'importe quelle direction
-        return !(peutSeDeplacer(x + 1, y) || peutSeDeplacer(x - 1, y) || peutSeDeplacer(x, y + 1) || peutSeDeplacer(x, y - 1));
+        winLoose(); // Vérifier si un joueur est bloqué après chaque tour
     }
-
-    // Méthode auxiliaire pour vérifier si une case est accessible
-    private boolean peutSeDeplacer(int x, int y) {
-        return (x >= 0 && x < largeur && y >= 0 && y < hauteur && casesDestructibles[x][y]
-                && !((joueur1.getX() == x && joueur1.getY() == y) || (joueur2.getX() == x && joueur2.getY() == y)));
-    }
-
 
     public void detruireCase(char lettre, int nombre, Plateau LePlateau) {//Détruire une case
         // Vérifier si c'est le tour du joueur courant
