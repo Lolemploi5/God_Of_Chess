@@ -51,7 +51,7 @@ public class Menus {
                     System.out.println();
                     System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "La partie commence !" + ConsoleColors.RESET);
                     Plateau monPlateau = new Plateau(11,10,joueur1,joueur2); //Création du plateau
-                    Main.Jeu(monPlateau); //Lancement du jeu
+                    Jeu.Jeu(monPlateau); //Lancement du jeu
                     break;
                 case 3: //Choix 3 charge une partie déjà sauvegarder
                     System.out.println();
@@ -74,5 +74,26 @@ public class Menus {
 
         } while (choix != 3); //Tant que le choix n'est pas 3
     }
+    public static void MenuDetruire(Plateau LePlateau){
+        Scanner scanner = new Scanner(System.in);//Création d'un scanner pour lire les entrées
+        String input;//Variable pour stocker le choix de l'utilisateur
+        char lettre;//Variable pour stocker la lettre de la case
+        int nombre;//Variable pour stocker le nombre de la case
 
+        while (true) {//Boucle pour vérifier si les coordonnées sont valides
+            System.out.printf(ConsoleColors.WHITE_BRIGHT + "\nEntrez la lettre et le nombre de la case (ex. C:9) : " + ConsoleColors.RESET);
+            input = scanner.nextLine().toUpperCase();//Lecture de notre choix
+
+            if ((input.matches("[A-J]:([1-9]|10|11)"))) {//Vérification si les coordonnées sont valides
+                lettre = input.charAt(0);//Récupération de la lettre
+                nombre = Integer.parseInt(input.substring(2));//Récupération du nombre
+                break;
+            } else {
+                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Vous devez entrer une lettre (A-J) et un nombre (1-11) séparés par deux-points (:)." + ConsoleColors.RESET);
+            }
+        }
+
+        // Détruire la case spécifiée
+        LePlateau.detruireCase(lettre, nombre, LePlateau);
+    }
 }

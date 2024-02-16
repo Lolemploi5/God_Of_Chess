@@ -2,14 +2,14 @@ import java.util.Random;
 
 public class Plateau {
 
-    private int largeur;//Largeur du plateau
-    private int hauteur;//Hauteur du plateau
-    private Joueur joueur1;//Joueur 1
-    private Joueur joueur2;//Joueur 2
+    public static int largeur;//Largeur du plateau
+    public static int hauteur;//Hauteur du plateau
+    public static Joueur joueur1;//Joueur 1
+    public static Joueur joueur2;//Joueur 2
 
-    private Joueur joueurCourant;//Joueur entrain de jouer
+    public static Joueur joueurCourant;//Joueur entrain de jouer
 
-    private boolean[][] casesDestructibles;//Cases destructibles
+    public static boolean[][] casesDestructibles;//Cases destructibles
 
     public Joueur getJoueur1() {//Récupérer le joueur 1
         return joueur1;//Retourne le joueur 1
@@ -141,11 +141,11 @@ public class Plateau {
                 // Vérifier si la case contient un joueur
                 if ((joueur1.getX() == x && joueur1.getY() == y) || (joueur2.getX() == x && joueur2.getY() == y)) {
                     System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Impossible de détruire la case. Un joueur occupe cette case." + ConsoleColors.RESET);
-                    Main.MenuDetruire(LePlateau);
+                    Menus.MenuDetruire(LePlateau);
 
                 } else if (!casesDestructibles[x][y]) {//Vérifier si la case est déjà détruite
                     System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Impossible de détruire la case. La case est déjà détruite." + ConsoleColors.RESET);
-                    Main.MenuDetruire(LePlateau);
+                    Menus.MenuDetruire(LePlateau);
 
                 } else {
                     casesDestructibles[x][y] = false;
@@ -157,7 +157,7 @@ public class Plateau {
     
             } else {
                 System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Impossible de détruire la case. Coordonnées invalides.\n" + ConsoleColors.RESET);
-                Main.MenuDetruire(LePlateau);
+                Menus.MenuDetruire(LePlateau);
 
             }
     
@@ -196,30 +196,5 @@ public class Plateau {
         }
     }
 
-    public boolean deplacerJoueur(int deltaX, int deltaY) {//Déplacer le joueur
-        boolean deplacementPossible = false;//Initialiser le déplacement possible à faux
-        int newX = joueurCourant.getX() + deltaX;//Nouvelle position en x
-        int newY = joueurCourant.getY() + deltaY;//Nouvelle position en y
-
-        // Vérifier si la nouvelle position est valide
-        if (newX >= 0 && newX < largeur && newY >= 0 && newY < hauteur
-                && casesDestructibles[newX][newY]
-                && !((joueur1.getX() == newX && joueur1.getY() == newY) || (joueur2.getX() == newX && joueur2.getY() == newY))) {
-
-            joueurCourant.setX(newX);//Affecter la nouvelle position en x
-            joueurCourant.setY(newY);//Affecter la nouvelle position en y
-
-            deplacementPossible = true;//Le déplacement est possible
-
-        } else {
-            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "\nErreur : Déplacement impossible. La nouvelle position est hors du plateau, la case est déjà détruite ou un joueur se trouve sur la case.\n" + ConsoleColors.RESET);
-            deplacementPossible = false;//Le déplacement est impossible
-        }
-
-    return deplacementPossible;//Retourner si le déplacement est possible
-
-
-
-    }
 }
 
