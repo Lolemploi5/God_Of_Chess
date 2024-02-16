@@ -60,4 +60,19 @@ class Joueur {
 
     }
 
+    // Méthode auxiliaire pour vérifier si un joueur est bloqué
+    public static boolean estBloque(Joueur joueur) {
+        int x = joueur.getX();
+        int y = joueur.getY();
+
+        // Vérifier si le joueur peut se déplacer dans n'importe quelle direction
+        return !(peutSeDeplacer(x + 1, y) || peutSeDeplacer(x - 1, y) || peutSeDeplacer(x, y + 1) || peutSeDeplacer(x, y - 1));
+    }
+
+    // Méthode auxiliaire pour vérifier si une case est accessible
+    public static boolean peutSeDeplacer(int x, int y) {
+        return (x >= 0 && x < Plateau.largeur && y >= 0 && y < Plateau.hauteur && Plateau.casesDestructibles[x][y]
+                && !((Plateau.joueur1.getX() == x && Plateau.joueur1.getY() == y) || (Plateau.joueur2.getX() == x && Plateau.joueur2.getY() == y)));
+    }
+
 }

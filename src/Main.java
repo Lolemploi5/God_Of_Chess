@@ -53,12 +53,12 @@ public class Main {
 
     // Méthode pour afficher le tableau des scores
     public static void afficherTableauDesScores() {
-        System.out.println(ConsoleColors.BLUE_BOLD + "Tableau des Scores :" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "\nTableau des Scores :" + ConsoleColors.RESET);
 
         int count = 0;//Variable pour compter les 5 premiers scores
         for (Score score : scores) {//Parcours de la liste des scores
             if (count < 5) {//Si on a pas encore affiché les 5 premiers scores
-                System.out.println(score.getJoueur().getPseudo() + ": " + score.getScore() + " points");//Affichage du score
+                System.out.println(ConsoleColors.BLUE_BOLD + score.getJoueur().getPseudo() + ConsoleColors.WHITE_BOLD_BRIGHT + ": " + score.getScore() + " points" + ConsoleColors.RESET);//Affichage du score
                 count++;//Incrémentation du compteur
             } else {
                 break; // Sort de la boucle une fois les 5 premiers scores affichés
