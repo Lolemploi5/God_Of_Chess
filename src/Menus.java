@@ -11,7 +11,7 @@ public class Menus {
             System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT + "1. Règles du jeu !" + ConsoleColors.RESET);
             System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "2. Nouvelle Partie !" + ConsoleColors.RESET);
             System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "3. Charger une sauvegarde !" + ConsoleColors.RESET);
-            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "4. Tableau des scores !" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "4. Tableau des scores !" + ConsoleColors.RESET);
             System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "5. Quitter" + ConsoleColors.RESET);
             System.out.printf(ConsoleColors.WHITE_BOLD_BRIGHT + "Entrez le numéro de votre choix : " + ConsoleColors.RESET);
 
