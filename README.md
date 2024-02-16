@@ -1,19 +1,50 @@
-# God_Of_Chess
+# God of Chess
 
 ## Description
-God_Of_Chess est un jeu d'échecs interactif conçu pour offrir une expérience utilisateur exceptionnelle.
+
+God of Chess est un jeu de stratégie captivant où les joueurs s'affrontent pour devenir le maître ultime des échecs destructibles.
+
+## Table des matières
+
+- [God of Chess](#god-of-chess)
+  - [Description](#description)
+  - [Table des matières](#table-des-matières)
+  - [Installation](#installation)
+  - [Règles du jeu](#règles-du-jeu)
+    - [Contraintes](#contraintes)
+  - [Fonctionnalités](#fonctionnalités)
 
 ## Installation
-Pour installer God_Of_Chess, suivez les étapes ci-dessous :
-1. Clonez le dépôt : `git clone https://github.com/Lolemploi5/God_Of_Chess.git`
-2. Accédez au dossier du projet : `cd God_Of_Chess`
-3. Installez les dépendances : `npm install`
 
-## Utilisation
-Pour lancer le jeu, utilisez la commande suivante : `npm start`
+1. Clonez le dépôt GitHub :
 
-## Contribution
-Les contributions sont toujours les bienvenues. Veuillez lire le guide de contribution avant de faire un pull request.
+    ```bash
+    git clone https://github.com/votre-utilisateur/God-of-Chess.git
+    cd God-of-Chess
+    ```
 
-## Licence
-God_Of_Chess est sous licence MIT. Pour plus d'informations, veuillez consulter le fichier `LICENSE`.
+2. Compilez et exécutez le jeu.
+
+    ```bash
+    # Commandes pour compiler et lancer le jeu
+    ```
+
+## Règles du jeu
+
+Pendant son tour, chaque joueur peut déplacer son pion d'une case (verticalement ou horizontalement) et détruire une case du plateau. Le dernier joueur capable de se déplacer remporte la partie.
+
+### Contraintes
+
+- Un joueur ne peut pas détruire une case occupée.
+- Un joueur ne peut pas occuper une case détruite ou une case déjà occupée.
+- Un joueur bloqué pendant un tour est déclaré perdant.
+
+## Fonctionnalités
+
+- Plateau de jeu dynamique avec des cases destructibles.
+- Déplacement stratégique des joueurs.
+- Destruction de cases pour bloquer les adversaires.
+- Gestion des scores.
+
+
+
