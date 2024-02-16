@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Plateau {
 
     private int largeur;//Largeur du plateau
@@ -38,7 +40,14 @@ public class Plateau {
     public Plateau(int largeur, int hauteur , Joueur j1 , Joueur j2) {//Constructeur
         this.largeur = largeur;//Affecter la largeur
         this.hauteur = hauteur;//Affecter la hauteur
-        this.joueurCourant = j1; // Initialiser le joueur courant au joueur 1 au début
+        Random rand = new Random();
+        
+        // Générer un nombre aléatoire soit 0 ou 1
+        int randomNum = rand.nextInt(2);
+
+        // Si le nombre aléatoire est 0, le joueur 1 commence, sinon le joueur 2 commence
+        this.joueurCourant = (randomNum == 0) ? j1 : j2;
+
         this.joueur1 = j1; // Le joueur démarre en haut à gauche
         this.joueur2 = j2; // Le joueur démarre en haut à gauche
         this.casesDestructibles = new boolean[largeur][hauteur];
