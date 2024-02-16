@@ -5,7 +5,7 @@ import java.util.*;
  * Elle gère également les scores des joueurs et les fonctionnalités du jeu.
  */
 public class Main {
-    private static List<Score> scores = new ArrayList<>();
+    private static List<Score> scores = new ArrayList<>();//Liste pour stocker les scores des joueurs
 
     public static void main(String[] args) {
         /* Fonction principale qui permet de lancer le jeu **/
@@ -23,28 +23,28 @@ public class Main {
 
     // Méthode pour mettre à jour les scores
     public static void mettreAJourScores(Joueur gagnant, Joueur perdant) {
-        Score scoreGagnant = trouverScore(gagnant.getPseudo());
-        Score scorePerdant = trouverScore(perdant.getPseudo());
+        Score scoreGagnant = trouverScore(gagnant.getPseudo());//Recherche du score du gagnant
+        Score scorePerdant = trouverScore(perdant.getPseudo());//Recherche du score du perdant
 
-        if (scoreGagnant == null) {
-            scoreGagnant = new Score(gagnant, 0);
-            scores.add(scoreGagnant);
+        if (scoreGagnant == null) {//Si le score du gagnant n'existe pas
+            scoreGagnant = new Score(gagnant, 0);//Création d'un nouveau score
+            scores.add(scoreGagnant);//Ajout du score à la liste
         }
 
-        if (scorePerdant == null) {
-            scorePerdant = new Score(perdant, 0);
-            scores.add(scorePerdant);
+        if (scorePerdant == null) {//Si le score du perdant n'existe pas
+            scorePerdant = new Score(perdant, 0);//Création d'un nouveau score
+            scores.add(scorePerdant);//Ajout du score à la liste
         }
 
-        scoreGagnant.setScore(scoreGagnant.getScore() + 5);
-        scorePerdant.setScore(scorePerdant.getScore() - 2);
+        scoreGagnant.setScore(scoreGagnant.getScore() + 5);//Mise à jour du score du gagnant
+        scorePerdant.setScore(scorePerdant.getScore() - 2);//Mise à jour du score du perdant
     }
 
     // Méthode pour trouver un score dans la liste
     private static Score trouverScore(String pseudo) {
-        for (Score score : scores) {
-            if (score.getJoueur().getPseudo().equals(pseudo)) {
-                return score;
+        for (Score score : scores) {//Parcours de la liste des scores
+            if (score.getJoueur().getPseudo().equals(pseudo)) {//Si le score du joueur est trouvé
+                return score;//Retourne le score
             }
         }
         return null;
@@ -55,11 +55,11 @@ public class Main {
     public static void afficherTableauDesScores() {
         System.out.println(ConsoleColors.BLUE_BOLD + "Tableau des Scores :" + ConsoleColors.RESET);
 
-        int count = 0;
-        for (Score score : scores) {
-            if (count < 5) {
-                System.out.println(score.getJoueur().getPseudo() + ": " + score.getScore() + " points");
-                count++;
+        int count = 0;//Variable pour compter les 5 premiers scores
+        for (Score score : scores) {//Parcours de la liste des scores
+            if (count < 5) {//Si on a pas encore affiché les 5 premiers scores
+                System.out.println(score.getJoueur().getPseudo() + ": " + score.getScore() + " points");//Affichage du score
+                count++;//Incrémentation du compteur
             } else {
                 break; // Sort de la boucle une fois les 5 premiers scores affichés
             }
@@ -113,27 +113,7 @@ public class Main {
 
             switch (choix) {
                 case "/aide": //Choix 1 affiche les regles et invoque la function regle menu
-                    System.out.println();
-                    System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT + "Les Règles du jeu :" + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.WHITE_BRIGHT + "Pendant son tour un joueur peut déplacer son pion d’une case " + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.WHITE_BRIGHT + "(verticalement ou horizontalement), puis il détruit une case du plateau." + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "Le dernier joueur pouvant encore se déplacer" + ConsoleColors.GREEN_BOLD_BRIGHT + " gagne" + ConsoleColors.WHITE_BOLD_BRIGHT + "!" + ConsoleColors.RESET);
-                    System.out.println();
-
-                    System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT + "Contraintes :" + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.WHITE_BRIGHT + "- Un joueur ne peut pas détruire une case occupée." + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.WHITE_BRIGHT + "- Un joueur ne peut pas occuper une case détruite ou une case deja occupée." + ConsoleColors.RESET);
-                    System.out.printf(ConsoleColors.WHITE_BOLD_BRIGHT + "- Un joueur bloqué pendant un tour est déclaré " + ConsoleColors.RED_BOLD_BRIGHT+ "perdant" + ConsoleColors.WHITE_BOLD_BRIGHT + "!" + ConsoleColors.RESET);
-                    System.out.println(" \n");
-
-                    System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT + "Les Commandes dans le jeu :" + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "/s " + ConsoleColors.RESET + ConsoleColors.WHITE_BRIGHT+ "pour sauvegarder." + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "/q " + ConsoleColors.RESET + ConsoleColors.WHITE_BRIGHT+ "pour quitter le jeu." + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "/h " + ConsoleColors.RESET + ConsoleColors.WHITE_BRIGHT+ "pour monter d'une case." + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "/b " + ConsoleColors.RESET + ConsoleColors.WHITE_BRIGHT+ "pour baisser d'une case." + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "/d " + ConsoleColors.RESET + ConsoleColors.WHITE_BRIGHT+ "pour allez a droite ." + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "/g " + ConsoleColors.RESET + ConsoleColors.WHITE_BRIGHT+ "pour allez a gauche." + ConsoleColors.RESET);
-                    System.out.println();
+                    MenuAide.Menuaide();
                     Jeu(LePlateau);//Retour au menu de commencement
 
                     break;
@@ -200,6 +180,4 @@ public class Main {
 
         } while (choix.length() != 5);//Tant que le choix n'est pas 5
     }
-
-
 }
