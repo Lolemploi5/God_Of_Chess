@@ -11,7 +11,8 @@ public class Menus {
             System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT + "1. Règles du jeu !" + ConsoleColors.RESET);
             System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "2. Nouvelle Partie !" + ConsoleColors.RESET);
             System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "3. Charger une sauvegarde !" + ConsoleColors.RESET);
-            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "4. Quitter" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "4. Tableau des scores !" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "5. Quitter" + ConsoleColors.RESET);
             System.out.printf(ConsoleColors.WHITE_BOLD_BRIGHT + "Entrez le numéro de votre choix : " + ConsoleColors.RESET);
 
             while (!scanner.hasNextInt()) { //Verification si le choix est un nombre
@@ -57,13 +58,14 @@ public class Menus {
 
                     System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "Entrez le pseudo du joueur 1 ?" + ConsoleColors.RESET);
                     j1Pseudo = myObj.nextLine();//Lecture du pseudo du joueur 1
-                    Joueur joueur1 = new Joueur(5,5,j1Pseudo); //Création du joueur 1
+                    Joueur joueur1 = new Joueur(5,5,j1Pseudo, 0); //Création du joueur 1
 
 
                     System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "Entrez le pseudo du joueur 2 ?" + ConsoleColors.RESET);
                     j2Pseudo = myObj.nextLine();//Lecture du pseudo du joueur 2
+                    Joueur joueur2 = new Joueur(5,4, j2Pseudo, 0); //Création du joueur 2
 
-                    Joueur joueur2 = new Joueur(5,4, j2Pseudo); //Création du joueur 2
+
 
                     System.out.println();
                     System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "La partie commence !" + ConsoleColors.RESET);
@@ -75,7 +77,12 @@ public class Menus {
                     System.out.println(ConsoleColors.BLUE_BOLD + "Chargement d'une sauvegarde" + ConsoleColors.RESET);
 
                     break;
-                case 4: //Choix 4 quitte le jeu
+                case 4: //Choix 4 affiche le tableau des scores
+                    Main.afficherTableauDesScores();
+                    MenuCommencement(); // Redirigez ensuite l'utilisateur vers le menu de départ
+                    break;
+
+                case 5: //Choix 4 quitte le jeu
                     System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Au revoir !" + ConsoleColors.RESET);
                     scanner.close(); //Fermeture du scanner
                     System.exit(0); //Fermeture du programme

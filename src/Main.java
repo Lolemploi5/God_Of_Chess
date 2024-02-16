@@ -1,5 +1,6 @@
 import java.util.*;
 public class Main {
+    private static List<Score> scores = new ArrayList<>();
 
     public static void main(String[] args) {
         /* Fonction principale qui permet de lancer le jeu **/
@@ -18,6 +19,53 @@ public class Main {
 
 
     }
+    // Ajouter cette liste de scores dans votre classe Main
+
+    // Méthode pour mettre à jour les scores
+    public static void mettreAJourScores(Joueur gagnant, Joueur perdant) {
+        Score scoreGagnant = trouverScore(gagnant.getPseudo());
+        Score scorePerdant = trouverScore(perdant.getPseudo());
+
+        if (scoreGagnant == null) {
+            scoreGagnant = new Score(gagnant, 0);
+            scores.add(scoreGagnant);
+        }
+
+        if (scorePerdant == null) {
+            scorePerdant = new Score(perdant, 0);
+            scores.add(scorePerdant);
+        }
+
+        scoreGagnant.setScore(scoreGagnant.getScore() + 5);
+        scorePerdant.setScore(scorePerdant.getScore() - 2);
+    }
+
+    // Méthode pour trouver un score dans la liste
+    private static Score trouverScore(String pseudo) {
+        for (Score score : scores) {
+            if (score.getJoueur().getPseudo().equals(pseudo)) {
+                return score;
+            }
+        }
+        return null;
+    }
+
+
+    // Méthode pour afficher le tableau des scores
+    public static void afficherTableauDesScores() {
+        System.out.println(ConsoleColors.BLUE_BOLD + "Tableau des Scores :" + ConsoleColors.RESET);
+
+        int count = 0;
+        for (Score score : scores) {
+            if (count < 5) {
+                System.out.println(score.getJoueur().getPseudo() + ": " + score.getScore() + " points");
+                count++;
+            } else {
+                break; // Sort de la boucle une fois les 5 premiers scores affichés
+            }
+        }
+    }
+
     /* Fonction pour le jeu */
     public static void MenuDetruire(Plateau LePlateau){
         Scanner scanner = new Scanner(System.in);//Création d'un scanner pour lire les entrées
@@ -126,6 +174,12 @@ public class Main {
                         System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous ne pouvez pas vous deplacer d'une case vers la droite" + ConsoleColors.RESET);
                     }
                     Jeu(LePlateau);//Retour au menu de commencement
+
+                    break;
+                case "/q":
+                        System.out.println();
+                        System.out.println(ConsoleColors.BLUE_BOLD + "Vous avez quitté la game" + ConsoleColors.RESET);
+                        Menus.MenuCommencement();
 
                     break;
                 case "/g":
