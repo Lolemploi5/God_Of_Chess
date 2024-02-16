@@ -1,15 +1,15 @@
 import java.util.*;
+/*
+ * Classe principale du jeu God of Chess.
+ * Cette classe contient la fonction principale main() qui lance le jeu.
+ * Elle gère également les scores des joueurs et les fonctionnalités du jeu.
+ */
 public class Main {
     private static List<Score> scores = new ArrayList<>();
 
     public static void main(String[] args) {
         /* Fonction principale qui permet de lancer le jeu **/
-        //Petit art ascii pour le fun
-        System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "\n" +
-                " .---.  .----. .----.     .----. .----.    .---. .-. .-..----. .----. .----.\n" +
-                "/   __}/  {}  \\| {}  \\   /  {}  \\| {_     /  ___}| {_} || {_  { {__  { {__  \n" +
-                "\\  {_ }\\      /|     /   \\      /| |      \\     }| { } || {__ .-._} }.-._} }\n" +
-                " `---'  `----' `----'     `----' `-'       `---' `-' `-'`----'`----' `----' \n" + ConsoleColors.RESET);
+        Art.GOC();//Petit art ascii pour le fun
         System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "Bienvenue dans le jeu de la destruction !" + ConsoleColors.RESET);
         /* Declaration des variables pour la grille **/
         int longueur,Largeur;

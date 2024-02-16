@@ -83,15 +83,18 @@ public class Plateau {
         boolean joueur2Bloque = estBloque(joueur2);
         // Vérifier si les deux joueurs sont bloqués
         if (joueur1Bloque && joueur2Bloque) {
+            Art.JeuPerdu();
             System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Les deux joueurs sont bloqués. La partie est nulle." + ConsoleColors.RESET);
             Menus.MenuCommencement();
 
         } else if (joueur1Bloque) {
+            Art.JeuPerdu();
             System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Le joueur " + joueur1.getPseudo() + " est bloqué et ne peut donc plus se déplacer. " + "le joueur " + joueur2.getPseudo() + " gagne !" + ConsoleColors.RESET);
             Main.mettreAJourScores(joueur2,joueur1);
             Menus.MenuCommencement();
 
         } else if (joueur2Bloque) {
+            Art.JeuPerdu();
             Main.mettreAJourScores(joueur1,joueur2);
 
             System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Le joueur " + joueur2.getPseudo() + " est bloqué et ne peut donc plus se déplacer. " + "le joueur " + joueur1.getPseudo() + " gagne !" + ConsoleColors.RESET);
