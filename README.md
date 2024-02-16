@@ -23,12 +23,6 @@ God of Chess est un jeu de stratégie captivant où les joueurs s'affrontent pou
     cd God-of-Chess
     ```
 
-2. Compilez et exécutez le jeu.
-
-    ```bash
-    # Commandes pour compiler et lancer le jeu
-    ```
-
 ## Règles du jeu
 
 Pendant son tour, chaque joueur peut déplacer son pion d'une case (verticalement ou horizontalement) et détruire une case du plateau. Le dernier joueur capable de se déplacer remporte la partie.
