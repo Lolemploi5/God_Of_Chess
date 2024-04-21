@@ -23,6 +23,28 @@ public class Jeu{
             choix = scanner.nextLine().toLowerCase(); // Lecture de notre choix (converti en minuscules pour simplifier la comparaison)
 
             switch (choix) {
+                case "/l":
+                    GameState loadedGameState = GameState.chargerEtat("SaveGame", "Sauvegarde");
+                    if (loadedGameState != null) {
+                        System.out.println("Jeu chargé avec succès.");
+                        // Here, you should update your game state with the loaded game state
+                        Plateau.joueur1 = loadedGameState.getJoueur1();
+                        Plateau.joueur2 = loadedGameState.getJoueur2();
+                        Plateau.joueurCourant = loadedGameState.getJoueurCourant();
+                        Plateau.casesDestructibles = loadedGameState.getCasesDestructibles();
+                        // And so on for all the fields in GameState...
+
+                        // Resume the game
+                        Jeu(LePlateau);
+                    } else {
+                        System.out.println("Erreur lors du chargement du jeu.");
+                    }
+                    break;
+                case "/s":
+                    GameState gameState = new GameState(Main.getScores(), Plateau.joueur1, Plateau.joueur2, Plateau.joueurCourant, Plateau.casesDestructibles);
+                    gameState.sauvegarderEtat("SaveGame", "Sauvegarde");
+                    System.out.println("Jeu sauvegardé avec succès.");
+                    break;
                 case "/aide": //Choix 1 affiche les regles et invoque la function regle menu
                     MenuAide.Menuaide();
                     Jeu(LePlateau);//Retour au menu de commencement
@@ -70,7 +92,7 @@ public class Jeu{
                 case "/q":
                     System.out.println();
                     System.out.println(ConsoleColors.BLUE_BOLD + "Vous avez quitté la game" + ConsoleColors.RESET);
-                    Menus.MenuCommencement();
+                    Menus.MenuCommencement(LePlateau);
 
                     break;
                 case "/g":

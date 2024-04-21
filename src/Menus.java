@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Menus {
-    public static void MenuCommencement(){
+    public static void MenuCommencement(Plateau LePlateau) {
+
         Scanner scanner = new Scanner(System.in);//Création d'un scanner pour lire les entrées
         int choix;//Variable pour stocker le choix de l'utilisateur
         do {
@@ -17,7 +18,7 @@ public class Menus {
 
             while (!scanner.hasNextInt()) { //Verification si le choix est un nombre
                 System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Erreur : Vous devez entrer un nombre (1-4)." + ConsoleColors.RESET);
-                MenuCommencement();//Retour au menu de commencement
+                MenuCommencement(LePlateau);//Retour au menu de commencement
                 scanner.next();//Lecture de notre choix
             }
 
@@ -26,7 +27,7 @@ public class Menus {
             switch (choix) {
                 case 1: //Choix 1 affiche les regles et invoque la function regle menu
                     MenuAide.Menuaide();
-                    MenuCommencement();//Retour au menu de commencement
+                    MenuCommencement(LePlateau);//Retour au menu de commencement
 
                     break;
                 case 2: // choix 2 créer une nouvelle partie
@@ -53,14 +54,28 @@ public class Menus {
                     Plateau monPlateau = new Plateau(11,10,joueur1,joueur2); //Création du plateau
                     Jeu.Jeu(monPlateau); //Lancement du jeu
                     break;
-                case 3: //Choix 3 charge une partie déjà sauvegarder
+                case 3: //Choix 3 charge une partie déjà sauvegardée
                     System.out.println();
                     System.out.println(ConsoleColors.BLUE_BOLD + "Chargement d'une sauvegarde" + ConsoleColors.RESET);
+                    GameState loadedGameState = GameState.chargerEtat("SaveGame", "Sauvegarde");
+                    if (loadedGameState != null) {
+                        System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "\nJeu chargé avec succès." + ConsoleColors.RESET);
+                        // Here, you should update your game state with the loaded game state
+                        Plateau.joueur1 = loadedGameState.getJoueur1();
+                        Plateau.joueur2 = loadedGameState.getJoueur2();
+                        Plateau.joueurCourant = loadedGameState.getJoueurCourant();
+                        Plateau.casesDestructibles = loadedGameState.getCasesDestructibles();
+                        // And so on for all the fields in GameState...
 
+                        // Resume the game
+                        Jeu.Jeu(LePlateau);
+                    } else {
+                        System.out.println("Erreur lors du chargement du jeu.");
+                    }
                     break;
                 case 4: //Choix 4 affiche le tableau des scores
                     Main.afficherTableauDesScores();
-                    MenuCommencement(); // Redirigez ensuite l'utilisateur vers le menu de départ
+                    MenuCommencement(LePlateau); // Redirigez ensuite l'utilisateur vers le menu de départ
                     break;
 
                 case 5: //Choix 4 quitte le jeu

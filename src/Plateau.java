@@ -94,13 +94,13 @@ public class Plateau {
         if (joueur1Bloque && joueur2Bloque) {
             Art.JeuPerdu();
             System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "Les deux joueurs sont bloqués. La partie est " + ConsoleColors.RED_BOLD_BRIGHT + "nulle" + ConsoleColors.PURPLE_BOLD_BRIGHT + "." + ConsoleColors.RESET);
-            Menus.MenuCommencement();
+            Menus.MenuCommencement(this);
 
         } else if (joueur1Bloque) {
             Art.JeuPerdu();
             System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "Le joueur " + ConsoleColors.BLUE_BOLD_BRIGHT + joueur1.getPseudo() + ConsoleColors.PURPLE_BOLD_BRIGHT + " est bloqué et ne peut donc plus se déplacer. " + "Le joueur " + ConsoleColors.RED_BOLD_BRIGHT +  joueur2.getPseudo() + ConsoleColors.GREEN_BOLD_BRIGHT + " gagne " + ConsoleColors.PURPLE_BOLD_BRIGHT + "!" + ConsoleColors.RESET);
             Main.mettreAJourScores(joueur2,joueur1);
-            Menus.MenuCommencement();
+            Menus.MenuCommencement(this);
 
         } else if (joueur2Bloque) {
             Art.JeuPerdu();
@@ -108,7 +108,7 @@ public class Plateau {
 
             System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT + "Le joueur " + ConsoleColors.RED_BOLD_BRIGHT + joueur2.getPseudo() + ConsoleColors.PURPLE_BOLD_BRIGHT + " est bloqué et ne peut donc plus se déplacer. " + "Le joueur " + ConsoleColors.BLUE_BOLD_BRIGHT + joueur1.getPseudo() + ConsoleColors.GREEN_BOLD_BRIGHT + " gagne " + ConsoleColors.PURPLE_BOLD_BRIGHT + "!" + ConsoleColors.RESET);
 
-            Menus.MenuCommencement();
+            Menus.MenuCommencement(this);
 
         }
     }

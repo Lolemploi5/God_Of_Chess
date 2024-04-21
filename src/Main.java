@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.*;
 /*
  * Classe principale du jeu God of Chess.
@@ -8,16 +9,44 @@ public class Main {
     private static List<Score> scores = new ArrayList<>();//Liste pour stocker les scores des joueurs
 
     public static void main(String[] args) {
+        scores = chargerScores("SaveScore", "Sauvegarde");
+        if (scores == null) {
+            scores = new ArrayList<>();
+            System.out.println("Erreur lors du chargement des scores. Une nouvelle liste de scores a été créée.");
+        } else {
+            System.out.println("Scores chargés avec succès.");
+        }
         /* Fonction principale qui permet de lancer le jeu **/
         Art.GOC();//Petit art ascii pour le fun
         System.out.println(ConsoleColors.WHITE_BOLD_BRIGHT + "Bienvenue dans le jeu de la destruction !" + ConsoleColors.RESET);
         /* Declaration des variables pour la grille **/
         int longueur,Largeur;
         /* Declaration des variables pour les pions **/
+        Joueur joueur1 = new Joueur(5,5,"Joueur1", 0); //Création du joueur 1
+        Joueur joueur2 = new Joueur(5,4, "Joueur2", 0); //Création du joueur 2
+        Plateau LePlateau = new Plateau(11,10,joueur1,joueur2); //Création du plateau
 
-        Menus.MenuCommencement(); //Invocation d'une fonction pour commencer le jeu
+        Menus.MenuCommencement(LePlateau); //Invocation d'une fonction pour commencer le jeu
 
 
+
+
+    }
+    public static void sauvegarderScores(List<Score> scores, String nomFichier, String directoryPath) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(directoryPath + File.separator + nomFichier + ".ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(scores);
+            out.close();
+            fileOut.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+    }
+
+
+    public static List<Score> getScores() {
+        return scores;
     }
     // Ajouter cette liste de scores dans votre classe Main
 
@@ -38,6 +67,7 @@ public class Main {
 
         scoreGagnant.setScore(scoreGagnant.getScore() + 5);//Mise à jour du score du gagnant
         scorePerdant.setScore(scorePerdant.getScore() - 2);//Mise à jour du score du perdant
+        Main.sauvegarderScores(getScores(), "SaveScore", "Sauvegarde");//Sauvegarde des scores
     }
 
     // Méthode pour trouver un score dans la liste
@@ -64,6 +94,28 @@ public class Main {
                 break; // Sort de la boucle une fois les 5 premiers scores affichés
             }
         }
+    }
+
+    public static List<Score> chargerScores(String nomFichier, String directoryPath) {
+        List<Score> scores = null;
+        try {
+            File file = new File(directoryPath + File.separator + nomFichier + ".ser");
+            if (!file.exists() || !file.isFile()) {
+                System.out.println("Erreur: Le fichier " + nomFichier + " n'existe pas ou n'est pas un fichier.");
+                return null;
+            }
+
+            FileInputStream fileIn = new FileInputStream(file);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            scores = (List<Score>) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        } catch (ClassNotFoundException c) {
+            c.printStackTrace();
+        }
+        return scores;
     }
 
     /* Fonction pour le jeu */
